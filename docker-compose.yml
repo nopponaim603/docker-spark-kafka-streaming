@@ -48,7 +48,7 @@ services:
     command: /usr/local/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://master:7077
 
   notebook:
-    image: jairamc/spark-notebook
+    image: jairamc/spark-kafka-streaming-notebook
     environment:
       SPARK_OPTS: '--master=spark://master:7077'
     command: jupyter notebook --ip=0.0.0.0

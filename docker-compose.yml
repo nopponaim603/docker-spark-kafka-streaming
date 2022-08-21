@@ -14,6 +14,18 @@ services:
       front:
         ipv4_address: 172.16.238.2
 
+  dota2parser:
+    image: nopponaim603/dota2parser
+    ports:
+      - "5600:5600"
+    volumes:
+      - ./JSON:/usr/src/parser/JSON
+    environment:
+      - JVM_OPTS=-Xms1024M -Xmx1024M
+    networks:
+      # you may set custom IP addresses
+      front:
+        ipv4_address: 172.16.238.3
 
   kafka:
     image: wurstmeister/kafka

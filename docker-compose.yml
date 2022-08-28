@@ -1,6 +1,21 @@
 version: '2'
 services:
 
+  dota2parser:
+    image: nopponaim603/dota2parser:flume
+    ports:
+      - "5600:5600"
+    volumes:
+      - ./JSON:/usr/src/parser/JSON
+    environment:
+      - JVM_OPTS=-Xms1024M -Xmx1024M
+    command: java -jar -Xmx1024m /usr/src/parser/target/stats-0.1.0.jar 5600 10.96.0.3 44444
+    networks:
+      # you may set custom IP addresses
+      front:
+        ipv4_address: 10.96.0.2
+
+
   flume:
     image: nopponaim603/flume:kafka-k8s
     ports:
@@ -12,20 +27,8 @@ services:
     networks:
       # you may set custom IP addresses
       front:
-        ipv4_address: 10.96.0.2
-
-  dota2parser:
-    image: nopponaim603/dota2parser:fixip-k8s
-    ports:
-      - "5600:5600"
-    volumes:
-      - ./JSON:/usr/src/parser/JSON
-    environment:
-      - JVM_OPTS=-Xms1024M -Xmx1024M
-    networks:
-      # you may set custom IP addresses
-      front:
         ipv4_address: 10.96.0.3
+
 
   kafka:
     image: wurstmeister/kafka
@@ -66,6 +69,7 @@ services:
         ipv4_address: 10.96.0.22
 
   master:
+    #image: bitnami/spark
     image: jairamc/spark-kafka-streaming
     hostname: master
     environment:
@@ -73,6 +77,7 @@ services:
       MASTER: spark://master:7077
       SPARK_CONF_DIR: /usr/local/spark/conf
       SPARK_PUBLIC_DNS: localhost
+      HADOOP_HOME: /usr/local/spark
     ports:
       - 8080:8080
       - 7077:7077

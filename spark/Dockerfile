@@ -1,11 +1,11 @@
 FROM ubuntu
 
 # Environment
-ENV SPARK_VERSION 3.3.0
-ENV HADOOP_VERSION 3
-ENV SCALA_VERSION 2.13
+ENV SPARK_VERSION 3.1.3
+ENV HADOOP_VERSION 2.7
+ENV SCALA_VERSION 2.12
 ENV SPARK_HOME /usr/local/spark
-ENV HADOOP_HOME /usr/local/hadoop
+ENV HADOOP_HOME /usr/local/spark
 # wget
 RUN apt-get -y update && apt-get install -y wget
 
@@ -24,15 +24,17 @@ RUN apt-get install -y --no-install-recommends openjdk-8-jre-headless
 
 # Spark
 # Old version
-# http://d3kbcqa49mib13.cloudfront.net/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz
+# http://d3kbcqa49mib13.cloudfront.net/spark-2.2.0-bin-hadoop2.6.tgz
 # current version
+# https://dlcdn.apache.org/spark/spark-3.1.3/spark-3.1.3-bin-hadoop2.7.tgz
+# lasted not fid
 # https://dlcdn.apache.org/spark/spark-3.3.0/spark-3.3.0-bin-hadoop3-scala2.13.tgz
 RUN cd /tmp && \
-    wget https://dlcdn.apache.org/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}-scala${SCALA_VERSION}.tgz && \
-    tar -xvzf spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}-scala${SCALA_VERSION}.tgz -C /usr/local && \
-    rm spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}-scala${SCALA_VERSION}.tgz
+    wget https://dlcdn.apache.org/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz && \
+    tar -xvzf spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz -C /usr/local && \
+    rm spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz
 
-RUN cd /usr/local && ln -s spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}-scala${SCALA_VERSION} spark
+RUN cd /usr/local && ln -s spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION} spark
 
 # Spark Kafka Streaming
 # Older

@@ -1,4 +1,4 @@
-FROM jairamc/spark-kafka-streaming
+FROM nopponaim603/spark-streaming-kafka
 
 # Pip
 RUN apt-get -y update && \
@@ -7,9 +7,16 @@ RUN apt-get -y update && \
 
 
 # Notebook
+
 RUN pip --no-cache-dir install jupyter
-COPY ./toree-0.2.0.dev1.tar.gz /tmp/
-RUN pip --no-cache-dir install /tmp/toree-0.2.0.dev1.tar.gz && \
+
+# Apache Toree: Scala kernal for the Jupyter Notebook
+# https://toree.apache.org/
+#RUN cd /tmp && \
+#    wget https://dlcdn.apache.org/incubator/toree/0.4.0-incubating/toree/toree-0.4.0-incubating-bin.tar.gz && \
+COPY ./toree-0.4.0.tar.gz /tmp/
+
+RUN pip --no-cache-dir install /tmp/toree-0.4.0.tar.gz && \
     jupyter toree install
 
 EXPOSE 8888

@@ -15,7 +15,7 @@ services:
         ipv4_address: 10.96.0.2
 
   dota2parser:
-    image: nopponaim603/dota2parser:fixip-k8s
+    image: nopponaim603/dota2parser:flume
     ports:
       - "5600:5600"
     volumes:

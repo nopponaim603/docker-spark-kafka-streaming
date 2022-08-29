@@ -1,5 +1,5 @@
 #FROM jairamc/spark-kafka-streaming
-FROM nopponaim603/spark-streaming-kafka:3.1.3
+FROM nopponaim603/spark-streaming-kafka:2.4.8
 
 # Pip
 RUN apt-get -y update && \

@@ -2,8 +2,17 @@
   <configuration default="false" name="spark-notebook/Dockerfile" type="docker-deploy" factoryName="dockerfile" server-name="Docker">
     <deployment type="dockerfile">
       <settings>
-        <option name="imageTag" value="nopponaim603/jupyter-toree-notebook" />
+        <option name="imageTag" value="nopponaim603/jupyter-toree-notebook:3.1.3" />
+        <option name="command" value="jupyter notebook --ip=0.0.0.0 --allow-root" />
         <option name="containerName" value="notebook" />
+        <option name="envVars">
+          <list>
+            <DockerEnvVarImpl>
+              <option name="name" value="SPARK_OPTS" />
+              <option name="value" value="--master=spark://master:7077" />
+            </DockerEnvVarImpl>
+          </list>
+        </option>
         <option name="portBindings">
           <list>
             <DockerPortBindingImpl>

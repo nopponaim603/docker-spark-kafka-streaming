@@ -71,8 +71,8 @@ services:
 
   master:
     #image: bitnami/spark
-    #image: nopponaim603/spark-streaming-kafka
-    image: jairamc/spark-kafka-streaming
+    #image: jairamc/spark-kafka-streaming
+    image: nopponaim603/spark-streaming-kafka
     hostname: master
     environment:
       SPARK_HOME: /usr/local/spark
@@ -91,8 +91,8 @@ services:
         ipv4_address: 10.96.0.23
 
   slave:
-    image: jairamc/spark-kafka-streaming
-    #image: nopponaim603/spark-streaming-kafka
+    #image: jairamc/spark-kafka-streaming
+    image: nopponaim603/spark-streaming-kafka
     hostname: worker
     depends_on:
       - master

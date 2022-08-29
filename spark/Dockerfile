@@ -9,7 +9,6 @@ ENV HADOOP_HOME /usr/local/spark
 # wget
 RUN apt-get -y update && apt-get install -y wget
 
-
 # Java
 RUN apt-get install -y --no-install-recommends openjdk-8-jre-headless
 

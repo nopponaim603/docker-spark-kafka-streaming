@@ -3,7 +3,7 @@ services:
 
   master:
     #image: bitnami/spark
-    image: nopponaim603/spark-streaming-kafka:3.1.3
+    image: nopponaim603/spark-streaming-kafka:3.3.0
     hostname: master
     environment:
       HADOOP_HOME: /usr/local/spark
@@ -18,7 +18,7 @@ services:
     command: /usr/local/spark/bin/spark-class org.apache.spark.deploy.master.Master -h master
 
   slave:
-    image: nopponaim603/spark-streaming-kafka:3.1.3
+    image: nopponaim603/spark-streaming-kafka:3.3.0
     hostname: worker
     depends_on:
       - master

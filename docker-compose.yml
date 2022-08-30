@@ -37,7 +37,7 @@ services:
       KAFKA_CREATE_TOPICS: "sample_topic:1:1,android:1:1,acceleration:1:1"
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      - ./kafka/var/run/docker.sock:/var/run/docker.sock
     networks:
       # you may set custom IP addresses
       front:
